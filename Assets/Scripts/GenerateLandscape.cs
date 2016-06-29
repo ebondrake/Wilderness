@@ -1,10 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+public class Block{
+    public int type;
+    public bool vis;
+
+    public Block(int t, bool v)
+    {
+        type = t;
+        vis = v;
+    }
+}
+
+
 public class GenerateLandscape : MonoBehaviour {
 
     public int width = 64;
     public int depth = 64;
+    public int height = 64;
     public int heightScale = 20;
     public float detailScale = 25.0f;
 
@@ -13,6 +27,7 @@ public class GenerateLandscape : MonoBehaviour {
     public GameObject sandBlock;
     public GameObject waterBlock;
 
+    Block[,,] worldBlocks = new Block[width,height,DepthTextureMode];
 
 	void Start () {
 
