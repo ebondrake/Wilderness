@@ -86,6 +86,7 @@ public class GenerateLandscape : MonoBehaviour {
     void DrawBlock(Vector3 blockPos){
         if (blockPos.x < 0 || blockPos.x >= width || blockPos.y < 0 || blockPos.y >= height || blockPos.z < 0 || blockPos.z >= depth)
             return;
+        
         if (worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z] == null)
             return;
 
@@ -93,21 +94,15 @@ public class GenerateLandscape : MonoBehaviour {
         {
             worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z].vis = true;
             if (worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z].type == 1)
-            {
                 Instantiate(snowBlock, blockPos, Quaternion.identity);
-            }
             else if (worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z].type == 2)
-            {
                 Instantiate(grassBlock, blockPos, Quaternion.identity);
-            }
             else if (worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z].type == 3)
-            {
                 Instantiate(sandBlock, blockPos, Quaternion.identity);
-            }
             else if (worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z].type == 4)
-            {
                 Instantiate(waterBlock, blockPos, Quaternion.identity);
-            }
+            else
+                worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z].vis = false;
         }
     }
 
